@@ -1,0 +1,118 @@
+{
+  "project_info": {
+    "project_number": "1042066767003",
+    "project_id": "to-do-list-f",
+    "storage_bucket": "to-do-list-f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042066767003:android:6c5aed18e1af1498a71a3e",
+        "android_client_info": {
+          "package_name": "com.example.to_do_list"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042066767003-8lovrc2ip3t8kn190od8tnv34v0t7kag.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoRzI88aiw8pS0YWZGfMEfn4Swe35UVKQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042066767003-8lovrc2ip3t8kn190od8tnv34v0t7kag.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1042066767003-7f44jdbi9qb98dg4rekf6ret8rp00h10.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.toDoList"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042066767003:android:fa9d62ac96d8d81ea71a3e",
+        "android_client_info": {
+          "package_name": "com.skensa.to_do_list"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042066767003-8lovrc2ip3t8kn190od8tnv34v0t7kag.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoRzI88aiw8pS0YWZGfMEfn4Swe35UVKQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042066767003-8lovrc2ip3t8kn190od8tnv34v0t7kag.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1042066767003-7f44jdbi9qb98dg4rekf6ret8rp00h10.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.toDoList"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042066767003:android:7938a28bfcbb1fd8a71a3e",
+        "android_client_info": {
+          "package_name": "com.skensa.todolist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042066767003-8lovrc2ip3t8kn190od8tnv34v0t7kag.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoRzI88aiw8pS0YWZGfMEfn4Swe35UVKQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042066767003-8lovrc2ip3t8kn190od8tnv34v0t7kag.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1042066767003-7f44jdbi9qb98dg4rekf6ret8rp00h10.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.toDoList"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
