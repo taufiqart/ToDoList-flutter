@@ -134,7 +134,7 @@ class _ToDoState extends State<ToDo> {
                                 // });
                               },
                               children: [
-                                ...todos!.map((todo) {
+                                ...todos.map((todo) {
                                   return Container(
                                     key: ValueKey(todo?.uid),
                                     width: screen.width,
