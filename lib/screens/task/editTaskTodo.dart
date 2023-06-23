@@ -13,13 +13,20 @@ class EditTaskTodo extends StatefulWidget {
 class _EditTaskTodoState extends State<EditTaskTodo> {
   var order;
   var todo;
+  var task;
+  var args;
   final _formKey = GlobalKey<FormState>();
   var _txtTitle = TextEditingController();
   var _txtDeskripsi = TextEditingController();
   double spaceField = 4;
   void update() async {
     var db = FirebaseFirestore.instance;
-    await db.collection('todos').doc(todo.uid).update({
+    await db
+        .collection('todos')
+        .doc(todo.uid)
+        .collection('tasks')
+        .doc(task.uid)
+        .update({
       'title': _txtTitle.text,
       'deskripsi': _txtDeskripsi.text,
     });
@@ -28,10 +35,13 @@ class _EditTaskTodoState extends State<EditTaskTodo> {
 
   @override
   Widget build(BuildContext context) {
-    if (todo == null) {
-      todo = ModalRoute.of(context)!.settings.arguments;
-      _txtTitle.value = TextEditingValue(text: todo.title);
-      _txtDeskripsi.value = TextEditingValue(text: todo.deskripsi);
+    if (todo == null || task == null) {
+      args = ModalRoute.of(context)!.settings.arguments;
+      print(args);
+      task = args['task'];
+      todo = args['todo'];
+      _txtTitle.value = TextEditingValue(text: task.title);
+      _txtDeskripsi.value = TextEditingValue(text: task.deskripsi);
     }
     order = ModalRoute.of(context)!.settings.arguments;
     var screen = MediaQuery.of(context).size;
@@ -72,7 +82,7 @@ class _EditTaskTodoState extends State<EditTaskTodo> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  editTodoText,
+                  editTaskTodoText,
                   style: GoogleFonts.poppins(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,

@@ -56,7 +56,8 @@ class _TaskTodoState extends State<TaskTodo> {
         setState(() {});
       });
     } else if (type == 'ubah') {
-      Navigator.pushNamed(context, editTodoRoute, arguments: {task, todo});
+      Navigator.pushNamed(context, editTaskTodoRoute,
+          arguments: {'task': task, 'todo': todo});
     } else if (type == 'selesai') {
       await db
           .collection('todos')
@@ -154,12 +155,40 @@ class _TaskTodoState extends State<TaskTodo> {
                             height: screen.height,
                             margin: EdgeInsets.only(top: 10),
                             child: ReorderableListView(
-                              onReorder: (oldIndex, newIndex) {
-                                // setState(() {
-                                //   if (oldIndex > newIndex) newIndex--;
-                                //   final item = todos.removeAt(oldIndex);
-                                //   todos.insert(newIndex, item);
-                                // });
+                              onReorder: (oldIndex, newIndex) async {
+                                var _tasks = tasks!.toList();
+                                if (oldIndex < newIndex) newIndex--;
+                                print('old ${oldIndex}');
+                                print('new ${newIndex}');
+                                final item = _tasks.removeAt(oldIndex);
+                                _tasks.insert(newIndex, item);
+                                var db = FirebaseFirestore.instance;
+                                print(oldIndex);
+                                var batch = db.batch();
+                                setState(() {
+                                  tasks = _tasks;
+                                });
+                                for (var i = 0; i < _tasks.length; i++) {
+                                  var key = i;
+                                  var task_ = _tasks[i];
+                                  print(key);
+
+                                  var docRef = db
+                                      .collection('todos')
+                                      .doc(todo.uid)
+                                      .collection('tasks')
+                                      .doc(task_!.uid);
+                                  batch.update(docRef, {
+                                    'order': key,
+                                  });
+                                }
+                                await batch.commit().then(
+                                      (value) => setState(
+                                        () {
+                                          getTask();
+                                        },
+                                      ),
+                                    );
                               },
                               children: [
                                 ...tasks.map((task) {
@@ -212,7 +241,7 @@ class _TaskTodoState extends State<TaskTodo> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    '${task!.title}',
+                                                    '${task.title}',
                                                     style: GoogleFonts.poppins(
                                                         fontSize: 14),
                                                     textAlign: TextAlign.left,
@@ -248,7 +277,7 @@ class _TaskTodoState extends State<TaskTodo> {
                                                 items: [
                                                   'ubah',
                                                   'hapus',
-                                                  !task!.finish
+                                                  !task.finish
                                                       ? 'selesai'
                                                       : 'belum'
                                                 ].map((val) {
@@ -276,13 +305,19 @@ class _TaskTodoState extends State<TaskTodo> {
                             ),
                           );
                         } else {
-                          return Center(
-                            child: Text('belum ada'),
+                          return Container(
+                            height: screen.height * 0.8,
+                            child: Center(
+                              child: Text('belum ada'),
+                            ),
                           );
                         }
                       } else {
-                        return Center(
-                          child: Text('belum ada'),
+                        return Container(
+                          height: screen.height * 0.8,
+                          child: Center(
+                            child: Text('belum ada'),
+                          ),
                         );
                       }
                     },

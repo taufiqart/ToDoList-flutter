@@ -120,127 +120,140 @@ class _ToDoState extends State<ToDo> {
                     builder: (context, snapshot) {
                       var todos = snapshot.data;
                       if (snapshot.hasData) {
-                        return Container(
-                          width: screen.width,
-                          height: screen.height,
-                          margin: EdgeInsets.only(top: 10),
-                          child: ReorderableListView(
-                            onReorder: (oldIndex, newIndex) {
-                              // setState(() {
-                              //   if (oldIndex > newIndex) newIndex--;
-                              //   final item = todos.removeAt(oldIndex);
-                              //   todos.insert(newIndex, item);
-                              // });
-                            },
-                            children: [
-                              ...todos!.map((todo) {
-                                return Container(
-                                  key: ValueKey(todo?.uid),
-                                  width: screen.width,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      color: Colors.grey.shade300,
-                                      width: 1,
+                        if (todos!.length > 0) {
+                          return Container(
+                            width: screen.width,
+                            height: screen.height,
+                            margin: EdgeInsets.only(top: 10),
+                            child: ReorderableListView(
+                              onReorder: (oldIndex, newIndex) {
+                                // setState(() {
+                                //   if (oldIndex > newIndex) newIndex--;
+                                //   final item = todos.removeAt(oldIndex);
+                                //   todos.insert(newIndex, item);
+                                // });
+                              },
+                              children: [
+                                ...todos!.map((todo) {
+                                  return Container(
+                                    key: ValueKey(todo?.uid),
+                                    width: screen.width,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      border: Border.all(
+                                        color: Colors.grey.shade300,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(4),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.shade400,
+                                          blurRadius: 6,
+                                          offset: Offset(0, 3),
+                                          spreadRadius: -5,
+                                        )
+                                      ],
                                     ),
-                                    borderRadius: BorderRadius.circular(4),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.shade400,
-                                        blurRadius: 6,
-                                        offset: Offset(0, 3),
-                                        spreadRadius: -5,
-                                      )
-                                    ],
-                                  ),
-                                  margin: EdgeInsets.symmetric(
-                                    vertical: 2,
-                                    horizontal: 10,
-                                  ),
-                                  // height: 50,
-                                  clipBehavior: Clip.antiAlias,
-                                  alignment: Alignment.center,
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    child: InkWell(
-                                      splashColor: Colors.grey.shade400,
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, taskTodoRoute,
-                                            arguments: todo);
-                                      },
-                                      child: Container(
-                                        padding: EdgeInsets.symmetric(
-                                          vertical: 5,
-                                          horizontal: 20,
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  '${todo!.title}',
-                                                  style: GoogleFonts.poppins(
-                                                      fontSize: 14),
-                                                ),
-                                                Text(
-                                                  '${todo.deskripsi}',
-                                                  style: GoogleFonts.poppins(
-                                                      fontSize: 12),
-                                                ),
-                                              ],
-                                            ),
-                                            DropdownButton(
-                                              elevation: 0,
-                                              borderRadius: BorderRadius.zero,
-                                              underline: SizedBox(),
-                                              icon: FaIcon(
-                                                FontAwesomeIcons
-                                                    .ellipsisVertical,
-                                                color: Colors.grey.shade600,
-                                              ),
-                                              isExpanded: false,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  action(
-                                                      value.toString(), todo);
-                                                  // _txtRole = value.toString();
-                                                });
-                                              },
-                                              style: GoogleFonts.poppins(
-                                                  color: Colors.grey.shade600),
-                                              items:
-                                                  ['ubah', 'hapus'].map((val) {
-                                                return DropdownMenuItem(
-                                                  value: val
-                                                      .toString()
-                                                      .toLowerCase(),
-                                                  child: InkWell(
-                                                    child: Container(
-                                                      width: 50,
-                                                      child: Text(val),
-                                                    ),
+                                    margin: EdgeInsets.symmetric(
+                                      vertical: 2,
+                                      horizontal: 10,
+                                    ),
+                                    // height: 50,
+                                    clipBehavior: Clip.antiAlias,
+                                    alignment: Alignment.center,
+                                    child: Material(
+                                      color: Colors.transparent,
+                                      child: InkWell(
+                                        splashColor: Colors.grey.shade400,
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context, taskTodoRoute,
+                                              arguments: todo);
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                            vertical: 5,
+                                            horizontal: 20,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    '${todo!.title}',
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 14),
                                                   ),
-                                                );
-                                              }).toList(),
-                                            ),
-                                          ],
+                                                  Text(
+                                                    '${todo.deskripsi}',
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 12),
+                                                  ),
+                                                ],
+                                              ),
+                                              DropdownButton(
+                                                elevation: 0,
+                                                borderRadius: BorderRadius.zero,
+                                                underline: SizedBox(),
+                                                icon: FaIcon(
+                                                  FontAwesomeIcons
+                                                      .ellipsisVertical,
+                                                  color: Colors.grey.shade600,
+                                                ),
+                                                isExpanded: false,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    action(
+                                                        value.toString(), todo);
+                                                    // _txtRole = value.toString();
+                                                  });
+                                                },
+                                                style: GoogleFonts.poppins(
+                                                    color:
+                                                        Colors.grey.shade600),
+                                                items: ['ubah', 'hapus']
+                                                    .map((val) {
+                                                  return DropdownMenuItem(
+                                                    value: val
+                                                        .toString()
+                                                        .toLowerCase(),
+                                                    child: InkWell(
+                                                      child: Container(
+                                                        width: 50,
+                                                        child: Text(val),
+                                                      ),
+                                                    ),
+                                                  );
+                                                }).toList(),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              }).toList(),
-                            ],
-                          ),
-                        );
+                                  );
+                                }).toList(),
+                              ],
+                            ),
+                          );
+                        } else {
+                          return Container(
+                            height: screen.height * 0.8,
+                            child: Center(
+                              child: Text('belum ada'),
+                            ),
+                          );
+                        }
                       } else {
-                        return Center(
-                          child: Text('belum ada'),
+                        return Container(
+                          height: screen.height * 0.8,
+                          child: Center(
+                            child: Text('belum ada'),
+                          ),
                         );
                       }
                     },
